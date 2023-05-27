@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 17:19:44 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/27 15:22:20 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:57:38 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_global	*initialise_data(int32_t size)
 	global->color = init_color();
 	global->canvas = init_canvas();
 	global->window = init_window(size);
-	global->zoom = 1;
 	return (global);
 }
 

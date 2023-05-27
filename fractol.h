@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:25 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/27 15:21:55 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/27 19:04:12 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct	s_window
 	uint32_t	size;
 	uint32_t	width;
 	uint32_t	height;
-	uint32_t	x;
-	uint32_t	y;
+	int			x;
+	int			y;
 }	t_window;
 
 typedef struct	s_global
@@ -56,7 +56,6 @@ typedef struct	s_global
 	t_window	*window;
 	mlx_image_t	*image;
 	mlx_t		*mlx;
-	long double	zoom;
 }	t_global;
 
 void		ft_exit(void);
@@ -67,7 +66,7 @@ void		draw_lines(void *param);
 /* Hooks */
 
 void		ft_keyhook(void *param);
-void		ft_scrollhook(void *param);
+void		ft_scrollhook(double dx, double dy, void *param);
 
 /* Initialise all the structs */
 
@@ -79,5 +78,6 @@ t_color		*init_color(void);
 /* Edit them structs */
 
 void		move_canvas(t_global *global, int x, int y);
+void		zoom_canvas(t_global *global, long double zoom);
 
 #endif

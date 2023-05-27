@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:30:35 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/27 15:26:40 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:54:35 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	calc_mandelbrot(t_global *global, long double x, long double y)
 	x = 0;
 	y = 0;
 	cv->iter = 0;
-	// if (fabsl(dx) <= 0.25 && fabsl(dy) <= 0.5)
-		// cv->iter = cv->max_iter;
+	if (dx > -0.25 && dx <= 0.25 && fabsl(dy) <= 0.5)
+		cv->iter = cv->max_iter;
 	while (((x*x + y*y) < 4) && (cv->iter < cv->max_iter))
 	{
 		result = x*x - y*y + dx;
