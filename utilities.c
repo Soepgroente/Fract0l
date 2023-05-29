@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 17:19:44 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/27 15:57:38 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:41:57 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,11 @@
 	
 } */
 
-t_global	*initialise_data(int32_t size)
+void	initialise_data(t_global *global, int32_t size)
 {
-	t_global	*global;
-	
-	global = malloc(sizeof(t_global));
-	if (!global)
-		ft_exit();
-	global->color = init_color();
-	global->canvas = init_canvas();
-	global->window = init_window(size);
-	return (global);
+	init_color(&global->color);
+	init_canvas(&global->canvas);
+	init_window(&global->window, size);
 }
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)

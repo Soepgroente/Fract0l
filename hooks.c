@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:12:54 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/27 20:14:43 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:32:57 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,15 @@ void	ft_scrollhook(double dx, double dy, void *param)
 {
 	t_global	*global;
 	t_window	*w;
+	long double	zoom;
 
 	global = param;
-	w = global->window;
+	w = &global->window;
+	zoom = (long double) dy;
+	if (zoom < 0)
+		zoom = 1.1;
+	else
+		zoom = 1 / 1.1;
 	mlx_get_mouse_pos(global->mlx, &w->x, &w->y);
-	if (dy != 0)
-	{
-		if (dy < 0)
-		{
-			dy = sqrt(fabsl(dy)) / 20;
-			dy *= -1;
-			dy -= -1;
-		}
-		else
-		{
-			dy = sqrt(dy) / 20;
-			dy += 1;
-		}
-		zoom_canvas(global, (long double) dy);
-	}
+	zoom_canvas(global, zoom);
 }
