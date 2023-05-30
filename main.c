@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:14 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/29 19:15:20 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:01:24 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ int	main(int argc, char **argv)
 	t_global	g;
 	int			x;
 	int			y;
+	int			size;
 
 	x = 0;
 	y = 0;
-	initialise_data(&g, SIZE);
+	size = 200;
+	initialise_data(&g, size);
 	g.mlx = mlx_init(g.window.width, g.window.height, "Mandelbrot", true);
 	if (!g.mlx)
 		ft_exit();
@@ -64,11 +66,9 @@ int	main(int argc, char **argv)
 	}
 	draw_lines(&g);
 	mlx_set_mouse_pos(g.mlx, g.window.width / 2, g.window.height / 2);
-	// mlx_get_mouse_pos(g.mlx, &x, &y);
-	// mlx_loop_hook(g.mlx, ft_scrollhook, g);
-	// printf("x: %d, y: %d\n");
 	mlx_scroll_hook(g.mlx, ft_scrollhook, &g);
 	mlx_loop_hook(g.mlx, ft_keyhook, &g);
+	// mlx_mouse_hook(g.mlx, ft_mousehook, &g);
 	mlx_loop(g.mlx);
 	mlx_terminate(g.mlx);
 	return (EXIT_SUCCESS);

@@ -6,16 +6,21 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 17:19:44 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/29 18:41:57 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:21:47 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/* void	print_struct(t_global *global)
+void	change_detail(t_global *global, int direction)
 {
-	
-} */
+	if (direction == 1 && global->canvas.max_iter < 5000)
+		global->canvas.max_iter *= 1.5;
+	else if (direction == -1 && global->canvas.max_iter > 1)
+		global->canvas.max_iter *= 1 / 1.5;
+	printf("Max_iter: %d\n", global->canvas.max_iter);
+	draw_lines(global);
+}
 
 void	initialise_data(t_global *global, int32_t size)
 {

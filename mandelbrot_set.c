@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:30:35 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/29 18:48:45 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:06:53 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	calc_color(t_global *global, long double x)
 
 	iter = global->canvas.iter;
 	c = &global->color;
-	if (iter == MAX_ITER)
+	if (iter == global->canvas.max_iter)
 	{
 		c->r = 0x0;
 		c->g = 0x0;
@@ -56,9 +56,7 @@ void	calc_mandelbrot(t_global *global, long double x, long double y)
 	x = 0;
 	y = 0;
 	cv->iter = 0;
-	if (dx > -0.25 && dx <= 0.25 && fabsl(dy) <= 0.5)
-		cv->iter = MAX_ITER;
-	while (((x*x + y*y) < 4) && (cv->iter < MAX_ITER))
+	while (((x*x + y*y) < 4) && (cv->iter < global->canvas.max_iter))
 	{
 		result = x*x - y*y + dx;
 		y = 2*x*y + dy;
