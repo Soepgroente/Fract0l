@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:12:54 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/30 18:18:40 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:15:55 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_mousehook(void *param)
 	{
 		mlx_get_mouse_pos(global->mlx, &global->window.x, &global->window.y);
 	}
-	
 }
 
 void	ft_keyhook(void *param)

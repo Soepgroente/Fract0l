@@ -6,12 +6,13 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:25 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/30 17:57:06 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:47:58 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+# include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include <stdio.h>
@@ -64,6 +65,7 @@ void		calc_mandelbrot(t_global *global, long double x, long double y);
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		draw_lines(void *param);
 void		change_detail(t_global *global, int direction);
+void		calc_color(t_global *global, long double x);
 
 /* Hooks */
 

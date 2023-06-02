@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:14 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/05/30 14:01:24 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:12:44 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 		ft_exit();
 	}
 	draw_lines(&g);
-	mlx_set_mouse_pos(g.mlx, g.window.width / 2, g.window.height / 2);
+	// mlx_set_mouse_pos(g.mlx, g.window.width / 2, g.window.height / 2);
 	mlx_scroll_hook(g.mlx, ft_scrollhook, &g);
 	mlx_loop_hook(g.mlx, ft_keyhook, &g);
 	// mlx_mouse_hook(g.mlx, ft_mousehook, &g);
