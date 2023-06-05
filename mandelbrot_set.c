@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot_set.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:30:35 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/02 16:47:49 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/04 16:38:14 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	calc_color(t_global *global, long double x)
+void	calc_color(t_data *data, long double x)
 {
-	t_color	*c;
-	int		iter;
+	t_color		*c;
+	uint32_t	iter;
 
-	iter = global->canvas.iter;
-	c = &global->color;
-	if (iter == global->canvas.max_iter)
+	iter = data->canvas.iter;
+	c = &data->color;
+	if (iter == data->canvas.max_iter)
 	{
 		c->r = 0x0;
 		c->g = 0x0;
@@ -41,27 +41,28 @@ void	calc_color(t_global *global, long double x)
 		// c->b = (255 * iter / 25) % 255;
 		// c->opac = 255;
 	}
+	c->color = ft_pixel(c->r, c->g, c->b, c->opac);
 }
 
-void	calc_mandelbrot(t_global *global, long double x, long double y)
+void	calc_mandelbrot(t_data *data, long double x, long double y)
 {
 	t_canvas	*cv;
 	long double	dx;
 	long double	dy;
-	long double	result;
+	long double	value;
 
-	cv = &global->canvas;
-	dx = cv->width * (x / global->window.width) + cv->xmin;
-	dy = cv->height * (y / global->window.height) + cv->ymin;
+	cv = &data->canvas;
+	dx = cv->width * ft_fraction(x, data->window.width) + cv->xmin;
+	dy = cv->height * ft_fraction(y, data->window.height) + cv->ymin;
 	x = 0;
 	y = 0;
 	cv->iter = 0;
-	while (((x*x + y*y) < 4) && (cv->iter < global->canvas.max_iter))
+	while (((x*x + y*y) < 4) && (cv->iter < data->canvas.max_iter))
 	{
-		result = x*x - y*y + dx;
+		value = x*x - y*y + dx;
 		y = 2*x*y + dy;
-		x = result;
+		x = value;
 		cv->iter++;
 	}
-	calc_color(global, x);
+	calc_color(data, x);
 }

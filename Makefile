@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
+#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:30:08 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/02 16:38:17 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/04 15:14:45 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,34 +16,37 @@ RM		= rm -rf
 CFLAGS	= -Wextra -Wall -Werror #-g -fsanitize=address
 LIBFT	= libft
 LIBMLX	= ./MLX42
-HEADERS	= -I ./include -I $(LIBMLX)/include
-LIBS	= $(LIBMLX)/build/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+HEADERS	= -I $(LIBMLX)/include/MLX42
+LIBS	= $(LIBMLX)/build/libmlx42.a -Ofast -ldl -lglfw -pthread -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -framework Cocoa -framework OpenGL -framework IOKit
+OBJDIR	= Fractobjs
 
-OBJDIR	= o_files
-SRCS	= hooks.c init_structs.c main.c mandelbrot_set.c modify_picture.c utilities.c
-OBJS	= $(SRC:%.c=$(OBJDIR)/%.o)
+SRCS	= hooks.c init_canvas.c init_window.c main.c mandelbrot_set.c modify_picture.c utilities.c
+OBJS	= $(SRCS:.c=.o)
+#OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
+
 
 all: libmlx $(NAME)
 
 libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 $(LIBFT)/$(LIBFT).a:
-	$(MAKE) -C libft
+	$(MAKE) -C $(LIBFT)
+
+#$(OBJS): $(OBJDIR)
+#	$(CC) $(SRCS) -c $(OBJDIR)/$(SRCS:%.c=%.o)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
-$(NAME): $(OBJS) $(LIBFT)/$(LIBFT).a:
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)/$(LIBFT).a
+	$(CC) $(OBJS) $(LIBFT)/$(LIBFT).a $(LIBS) -o $(NAME)
 
-$(OBJDIR)/%.o : %.c
-	mkdir -p $(OBJDIR)
-	$(CC) -c $(CFLAGS) -o $@ $^
+#$(OBJDIR):
+#	mkdir -p $(OBJDIR)
 
 clean:
 	rm -rf $(OBJDIR)
-#	@rm -f $(LIBMLX)/build
 
 fclean: clean
 	rm -f $(NAME)
