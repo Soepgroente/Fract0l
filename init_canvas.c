@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_canvas.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:04:45 by vincent           #+#    #+#             */
-/*   Updated: 2023/06/04 15:19:56 by vincent          ###   ########.fr       */
+/*   Updated: 2023/06/05 18:34:02 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,34 @@
 
 static void	canvas_mandel(t_data *data)
 {
-	t_canvas	canvas;
-
-	canvas = data->canvas;
-	canvas.xmin = -2;
-	canvas.xmax = 0.47;
-	canvas.ymin = -1.12;
-	canvas.ymax = 1.12;
-	canvas.width = fabsl(canvas.xmin - canvas.xmax);
-	canvas.height = fabsl(canvas.ymin - canvas.ymax);
-	canvas.iter = 0;
-	canvas.max_iter = 50;
-	canvas.zoomfactor = 1;
+	data->canvas.xmin = -2;
+	data->canvas.xmax = 0.47;
+	data->canvas.ymin = -1.12;
+	data->canvas.ymax = 1.12;
+	data->canvas.width = fabsl(data->canvas.xmin - data->canvas.xmax);
+	data->canvas.height = fabsl(data->canvas.ymin - data->canvas.ymax);
+	data->canvas.iter = 0;
+	data->canvas.max_iter = 50;
+	data->canvas.zoomfactor = 1;
 }
 
 static void	canvas_julia(t_data *data)
 {
-	t_canvas	canvas;
-
-	canvas = data->canvas;
-	canvas.xmin = -2;
-	canvas.xmax = 2;
-	canvas.ymin = -1.5;
-	canvas.ymax = 1.5;
-	canvas.width = fabsl(canvas.xmin - canvas.xmax);
-	canvas.height = fabsl(canvas.ymin - canvas.ymax);
-	canvas.iter = 0;
-	canvas.max_iter = 50;
-	canvas.zoomfactor = 1;
+	data->canvas.xmin = -2;
+	data->canvas.xmax = 2;
+	data->canvas.ymin = -1.5;
+	data->canvas.ymax = 1.5;
+	data->canvas.width = fabsl(data->canvas.xmin - data->canvas.xmax);
+	data->canvas.height = fabsl(data->canvas.ymin - data->canvas.ymax);
+	data->canvas.iter = 0;
+	data->canvas.max_iter = 50;
+	data->canvas.zoomfactor = 1;
 }
 
-void	init_canvas(t_data *data, int fractal)
+void	init_canvas(t_data *data)
 {
-	if (fractal == 1)
+	if (data->fractal == 1)
 		canvas_mandel(data);
-	if (fractal == 2)
+	if (data->fractal == 2)
 		canvas_julia(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ato_double.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 18:52:12 by vincent           #+#    #+#             */
-/*   Updated: 2023/06/04 13:24:04 by vincent          ###   ########.fr       */
+/*   Updated: 2023/06/06 15:38:54 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 static void	atod_error(void)
 {
-	ft_putendl_fd("Error: invalid numerical input", 2);
+	ft_putendl_fd("Error: invalid numerical input", STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
 static int	check_input(const char *str, int i)
 {
+	if (ft_strlen(str) >= 15)
+		atod_error();
 	while (ft_iswhitespace(str[i]))
 		i++;
 	if (str[i] == '-')
@@ -29,8 +31,6 @@ static int	check_input(const char *str, int i)
 		i++;
 		if (str[i] == '.')
 		{
-			if (ft_strlen(&str[i]) > 19)
-				atod_error();
 			i++;
 			break ;
 		}
@@ -44,9 +44,9 @@ static int	check_input(const char *str, int i)
 
 long double	ft_ato_double(const char *str)
 {
-	long double	res;
-	long double	c;
-	int			i;
+	double	res;
+	double	c;
+	int		i;
 
 	res = 0;
 	c = 1;
@@ -69,5 +69,5 @@ long double	ft_ato_double(const char *str)
 			c *= 10.0;
 		}
 	}
-	return (res);
+	return ((long double) res);
 }

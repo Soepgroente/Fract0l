@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:30:23 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/04 16:33:41 by vincent          ###   ########.fr       */
+/*   Updated: 2023/06/06 16:15:30 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_list
 #endif
 
 /* Character functions */
+
 int			ft_isalnum(int c);
 int			ft_isalpha(int c);
 int			ft_isascii(int c);
@@ -59,6 +60,7 @@ void		*ft_memset(void *b, int c, size_t len);
 long double	ft_ato_double(const char *str);
 int			ft_atoi(const char *str);
 char		*ft_itoa(int n);
+long double	ft_pow_fl(long double number, int power);
 long long	ft_pow(int number, int power);
 long double	ft_fraction(long double num, long double divisor);
 
@@ -92,5 +94,6 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strtrim(const char *s1, const char *set);
 char		*ft_substr(const char *s, unsigned int start, size_t len);
+char		*ft_tolower_str(char *str);
 
 #endif

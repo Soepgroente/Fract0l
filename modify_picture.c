@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_picture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:01:47 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/04 14:22:35 by vincent          ###   ########.fr       */
+/*   Updated: 2023/06/05 19:43:50 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	move_canvas(t_data *data, long double x, long double y)
 	cv->xmax += (long double) x / w->width * cv->width;
 	cv->ymin += (long double) y / w->height * cv->height;
 	cv->ymax += (long double) y / w->height * cv->height;
-	draw_lines(data);
+	draw_fractal(data);
 }
 
 void	adjust_window(t_data *data, long double zoom)
@@ -59,8 +59,6 @@ void	adjust_window(t_data *data, long double zoom)
 	c->xmax += mouse_dx - new_x;
 	c->ymin += mouse_dy - new_y;
 	c->ymax += mouse_dy - new_y;
-	c->width = fabsl(c->xmin - c->xmax);
-	c->height = fabsl(c->ymin - c->ymax);
 }
 
 void	zoom_canvas(t_data *data, long double zoom)
@@ -70,6 +68,5 @@ void	zoom_canvas(t_data *data, long double zoom)
 	else
 		zoom_the_thing(data, zoom);
 	data->canvas.zoomfactor *= zoom;
-	printf("Zoomfactor: %Lf\n", data->canvas.zoomfactor);
-	draw_lines(data);
+	draw_fractal(data);
 }

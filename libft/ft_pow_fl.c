@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower_str.c                                   :+:      :+:    :+:   */
+/*   ft_pow_fl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 17:05:38 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/06 15:10:21 by vvan-der         ###   ########.fr       */
+/*   Created: 2023/06/06 16:14:16 by vvan-der          #+#    #+#             */
+/*   Updated: 2023/06/06 16:15:16 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_tolower_str(char *str)
+long double	ft_pow_fl(long double number, int power)
 {
-	int	i;
+	long double	x;
 
-	i = 0;
-	while (str[i])
+	x = number;
+	if (power == 0)
+		return (1);
+	while (power > 1)
 	{
-		str[i] = ft_tolower(str[i]);
-		i++;
+		x *= number;
+		power--;
 	}
-	return (str);
+	return (x);
 }

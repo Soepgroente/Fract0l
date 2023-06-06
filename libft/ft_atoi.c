@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 12:45:33 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/04 16:16:26 by vincent          ###   ########.fr       */
+/*   Updated: 2023/06/05 14:39:52 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	check_string(const char *str, int *c)
+static int	check_string(const char *str, long *c)
 {
 	int	i;
 
