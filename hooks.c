@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:12:54 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/08 19:23:12 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:36:37 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ void	ft_mousehook(void *param)
 		cv->x = cv->width * ft_fraction(data->window.x, data->window.width) + cv->xmin;
 		cv->y = cv->height * ft_fraction(data->window.y, data->window.height) + cv->ymin;
 		draw_julia(data);
+	}
+}
+
+void	ft_mousehook2(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
+{
+	t_data		*data;
+	t_canvas	*cv;
+
+	(void)mods;
+	data = param;
+	cv = &data->canvas;
+	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_RELEASE && data->fractal == 1)
+	{
+		draw_mandel(data);
 	}
 }
 

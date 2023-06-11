@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:30:35 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/11 15:46:01 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:30:47 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_mandelbrot(int size)
 	mlx_scroll_hook(d.mlx, ft_scrollhook, &d);
 	mlx_loop_hook(d.mlx, ft_keyhook, &d);
 	mlx_loop_hook(d.mlx, ft_mousehook, &d);
+	mlx_mouse_hook(d.mlx, ft_mousehook2, &d);
 	mlx_loop(d.mlx);
 	mlx_terminate(d.mlx);
 	exit(EXIT_SUCCESS);

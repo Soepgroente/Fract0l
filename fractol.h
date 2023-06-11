@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:25 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/11 15:18:52 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:31:12 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void		draw_squid(void *param);
 void		ft_keyhook(void *param);
 void		ft_scrollhook(double dx, double dy, void *param);
 void		ft_mousehook(void *param);
+void		ft_mousehook2(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 
 /* Initialise all the structs */
 
