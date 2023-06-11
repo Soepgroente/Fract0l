@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:12:54 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/05 20:04:45 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/08 19:23:12 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,17 @@ void	ft_keyhook(void *param)
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT) || mlx_is_key_down(mlx, MLX_KEY_D))
 		move_canvas(data, data->window.width / 20, 0);
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT) && mlx_is_key_down(mlx, MLX_KEY_1))
+	{
+		data->window.x = data->window.width / 2;
+		data->window.y = data->window.height / 2;
 		zoom_canvas(data, 1 / 1.1);
+	}
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT_SHIFT) && mlx_is_key_down(mlx, MLX_KEY_2))
+	{
 		zoom_canvas(data, 1.1);
+		data->window.x = data->window.width / 2;
+		data->window.y = data->window.height / 2;
+	}
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT_CONTROL) && mlx_is_key_down(mlx, MLX_KEY_R))
 	{
 		init_canvas(data);

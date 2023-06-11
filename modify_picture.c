@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_picture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:01:47 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/05 19:43:50 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/07 12:10:02 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ void	zoom_canvas(t_data *data, long double zoom)
 		adjust_window(data, zoom);
 	else
 		zoom_the_thing(data, zoom);
-	data->canvas.zoomfactor *= zoom;
 	draw_fractal(data);
 }

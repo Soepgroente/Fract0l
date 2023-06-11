@@ -6,38 +6,38 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:27:34 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/06 17:40:16 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:56:40 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	calc_julia(t_data *data)
+void calc_julia(t_data *data)
 {
-	t_canvas	*cv;
-	long double	dx;
-	long double	dy;
-	long double value;
+	t_canvas *cv;
+	t_complex c;
+	t_complex z;
 
 	cv = &data->canvas;
-	dx = cv->width * ft_fraction(data->window.x, data->window.width) + cv->xmin;
-	dy = cv->height * ft_fraction(data->window.y, data->window.height) + cv->ymin;
+	c.x = cv->x;
+	c.i = cv->y;
+	z.x = cv->width * ft_fraction(data->window.x, data->window.width) + cv->xmin;
+	z.i = cv->height * ft_fraction(data->window.y, data->window.height) + cv->ymin;
 	cv->iter = 1;
-	while ((dx*dx + dy*dy) < 4 && cv->iter < cv->max_iter)
+	while ((z.x * z.x + z.i * z.i) < 4 && cv->iter < cv->max_iter)
 	{
-		value = dx*dx - dy*dy + cv->x;
-		dy = 2*dx*dy + cv->y;
-		dx = value;
+		z = c_multi(z, z);
+		z = c_add(z, c);
 		cv->iter++;
 	}
 	calc_color(data);
 }
 
-void	draw_julia(void *param)
+void draw_julia(void *param)
 {
-	t_data		*data;
-	t_window	*w;
-	
+	t_data *data;
+	t_window *w;
+
 	data = param;
 	w = &data->window;
 	w->x = 0;
@@ -54,9 +54,9 @@ void	draw_julia(void *param)
 	}
 }
 
-void	ft_julia(int size, long double x, long double y)
+void ft_julia(int size, long double x, long double y)
 {
-	t_data	d;
+	t_data d;
 
 	d.fractal = 2;
 	ft_openwindow(&d, size);

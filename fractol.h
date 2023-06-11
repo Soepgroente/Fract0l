@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:25 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/06 19:27:45 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:18:52 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,22 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
-# include <complex.h>
 # include <limits.h>
 # include <stdbool.h>
 
-# ifndef S_COLOR
-# define S_COLOR
+# ifndef S_COMPLEX
+# define S_COMPLEX
 
 typedef struct s_complex
 {
 	long double	x;
 	long double	i;
 }	t_complex;
+
+#endif
+
+# ifndef S_COLOR
+# define S_COLOR
 
 typedef struct s_color
 {
@@ -38,6 +42,9 @@ typedef struct s_color
 	uint32_t	b;
 	uint32_t	opac;
 	uint32_t	color;
+	t_complex	r1;
+	t_complex	r2;
+	t_complex	r3;
 }	t_color;
 
 #endif
@@ -53,7 +60,6 @@ typedef struct s_canvas
 	long double	ymax;
 	long double	width;
 	long double	height;
-	long double	zoomfactor;
 	long double	x;
 	long double	y;
 	uint32_t	iter;
@@ -91,6 +97,14 @@ typedef struct s_data
 
 #endif
 
+/* Complex math functions */
+
+t_complex	c_add(t_complex a, t_complex b);
+t_complex	c_div(t_complex a, t_complex b);
+t_complex	c_multi(t_complex a, t_complex b);
+t_complex	c_pow(t_complex x, int power);
+t_complex	c_sub(t_complex a, t_complex b);
+
 /* Executional functions */
 
 void		calc_color(t_data *data);
@@ -106,13 +120,19 @@ void		ft_julia(int size, long double x, long double y);
 
 /* Mandelbrot */
 
-void		calc_mandelbrot(t_data *data, long double x, long double y);
+void		calc_mandelbrot(t_data *data);
 void		ft_mandelbrot(int size);
 void		draw_mandel(void *param);
 
 /* Nova */
 
 void		ft_nova(int size);
+void		draw_nova(void *param);
+
+/* Squid */
+
+void		ft_squid(int size);
+void		draw_squid(void *param);
 
 /* Hooks */
 

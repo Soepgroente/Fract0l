@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 17:19:44 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/06 16:00:51 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:54:48 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	draw_fractal(t_data *data)
 		draw_mandel(data);
 	if (data->fractal == 2)
 		draw_julia(data);
+	if (data->fractal == 3)
+		draw_squid(data);
+	if (data->fractal == 4)
+		draw_nova(data);
 }
 
 void	change_detail(t_data *data, int direction)
