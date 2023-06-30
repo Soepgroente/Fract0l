@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:12:54 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/30 11:04:22 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:27:58 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	ft_mousehook(void *param)
 	}
 	if (mlx_is_key_down(d->mlx, 340) && mlx_is_key_down(d->mlx, 50))
 	{
-		zoom_canvas(d, 1.1);
 		d->window.x = d->window.width / 2;
 		d->window.y = d->window.height / 2;
+		zoom_canvas(d, 1.1);
 	}
 	if (mlx_is_key_down(d->mlx, 341) && mlx_is_key_down(d->mlx, 82))
 	{
