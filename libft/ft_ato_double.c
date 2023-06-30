@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 18:52:12 by vincent           #+#    #+#             */
-/*   Updated: 2023/06/06 15:38:54 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:54:22 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_input(const char *str, int i)
 		i++;
 	if (str[i] == '-')
 		i++;
-	while (ft_isdigit(str[i]) || (i > 0 && str[i] == '.'))
+	while (ft_isdigit(str[i]))
 	{
 		i++;
 		if (str[i] == '.')
@@ -40,6 +40,12 @@ static int	check_input(const char *str, int i)
 	if (str[i])
 		atod_error();
 	return (i);
+}
+
+static void	norm_dodging(double *res, double *c, int i, const char *str)
+{
+	*res += (str[i] - 48) * (*c);
+	*c *= 10.0;
 }
 
 long double	ft_ato_double(const char *str)
@@ -57,17 +63,14 @@ long double	ft_ato_double(const char *str)
 	{
 		i--;
 		if (!ft_isdigit(str[i]) && str[i] != '.')
-			return (res);
+			return ((long double) res);
 		if (str[i] == '.')
 		{
 			res /= (ft_pow(10, ft_strlen(&str[i]) - 1));
 			c /= (ft_pow(10, ft_strlen(&str[i]) - 1));
 		}
 		else
-		{	
-			res += (str[i] - 48) * c;
-			c *= 10.0;
-		}
+			norm_dodging(&res, &c, i, str);
 	}
 	return ((long double) res);
 }

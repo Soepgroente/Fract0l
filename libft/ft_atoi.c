@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 12:45:33 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/05 14:39:52 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:51:35 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ static int	check_string(const char *str, long *c)
 		*c *= -1;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
-	if (!ft_isdigit(str[i]))
+	while (ft_isdigit(str[i]))
+		i++;
+	if (str[i] && !ft_isdigit(str[i]))
 	{
 		ft_putendl_fd("Atoi error: non-numerical input", 2);
 		exit(EXIT_FAILURE);
 	}
-
-	while (ft_isdigit(str[i]))
-		i++;
 	return (i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:39:11 by vincent           #+#    #+#             */
-/*   Updated: 2023/06/11 17:24:43 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:18:16 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_complex	c_div(t_complex a, t_complex b)
 	t_complex	z;
 
 	conjugate.x = b.x;
-	conjugate.i = b.i * -1; 
+	conjugate.i = b.i * -1;
 	a = c_multi(a, conjugate);
 	b = c_multi(b, conjugate);
 	z.x = a.x / b.x;

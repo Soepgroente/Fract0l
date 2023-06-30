@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:30:23 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/06 16:15:30 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:06:16 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <limits.h>
 
 # ifndef S_LIST
-# define S_LIST
+#  define S_LIST
 
 typedef struct s_list
 {
@@ -28,7 +28,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-#endif
+# endif
 
 /* Character functions */
 
@@ -62,7 +62,6 @@ int			ft_atoi(const char *str);
 char		*ft_itoa(int n);
 long double	ft_pow_fl(long double number, int power);
 long long	ft_pow(int number, int power);
-long double	ft_fraction(long double num, long double divisor);
 
 /* List functions */
 

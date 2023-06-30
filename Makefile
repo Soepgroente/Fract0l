@@ -6,7 +6,7 @@
 #    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:30:08 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/08 15:49:28 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/30 11:11:23 by vvan-der         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,16 @@
 NAME	= Fractol
 CC		= gcc
 RM		= rm -rf
-CFLAGS	= -Wextra -Wall -Werror #-g -fsanitize=address
+CFLAGS	= -Wextra -Wall -Werror #-g3 -fsanitize=address
 LIBFT	= libft
 LIBMLX	= ./MLX42
 HEADERS	= -I $(LIBMLX)/include/MLX42
-LIBS	= $(LIBMLX)/build/libmlx42.a -Ofast -ldl -lglfw3 -pthread -framework Cocoa -framework OpenGL -framework IOKit
+LIBS	= $(LIBMLX)/build/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit # -pthread -Ofast -ldl
 OBJDIR	= Fractobjs
 
-SRCS	= complex_math.c fractol.c hooks.c init_canvas.c init_window.c \
-		julia_set.c mandelbrot_set.c modify_picture.c nova.c squid.c utilities.c
+SRCS	= complex_math.c fractol.c hooks.c init_canvas.c init_color.c init_window.c \
+		julia_set.c mandelbrot_set.c modify_picture.c multibrot.c nova.c utilities.c
+
 OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
 
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot_set.c                                   :+:      :+:    :+:   */
+/*   multibrot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 17:30:35 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/30 11:04:56 by vvan-der         ###   ########.fr       */
+/*   Created: 2023/06/29 15:15:36 by vvan-der          #+#    #+#             */
+/*   Updated: 2023/06/30 11:05:02 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	calc_mandelbrot(t_data *data)
+void	calc_multibrot(t_data *data, uint8_t pow)
 {
 	t_canvas	*cv;
 	t_complex	c;
@@ -26,14 +26,14 @@ void	calc_mandelbrot(t_data *data)
 	cv->iter = 0;
 	while ((z.x * z.x + z.i * z.i) < 4 && cv->iter < data->canvas.max_iter)
 	{
-		z = c_multi(z, z);
+		z = c_pow(z, pow);
 		z = c_add(z, c);
 		cv->iter++;
 	}
 	calc_color(data, z.x * z.x + z.i * z.i - 4);
 }
 
-void	draw_mandel(void *param)
+void	draw_multibrot(void *param)
 {
 	t_data		*data;
 	t_window	*w;
@@ -46,7 +46,7 @@ void	draw_mandel(void *param)
 		w->y = 0;
 		while (w->y < data->window.height)
 		{
-			calc_mandelbrot(data);
+			calc_multibrot(data, data->power);
 			mlx_put_pixel(data->image, w->x, w->y, data->color.color);
 			w->y++;
 		}
@@ -54,11 +54,17 @@ void	draw_mandel(void *param)
 	}
 }
 
-void	ft_mandelbrot(int size)
+void	ft_multibrot(int size, uint32_t power)
 {
 	t_data	d;
 
-	d.fractal = 1;
+	d.fractal = 4;
+	if (power > 64)
+	{
+		ft_putendl_fd("Too much mandle to handle", 2);
+		exit(EXIT_FAILURE);
+	}
+	d.power = power;
 	ft_openwindow(&d, size);
 	init_canvas(&d);
 	init_color(&d);

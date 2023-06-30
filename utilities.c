@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 17:19:44 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/08 15:54:48 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:56:50 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,46 +25,47 @@ void	draw_fractal(t_data *data)
 	if (data->fractal == 2)
 		draw_julia(data);
 	if (data->fractal == 3)
-		draw_squid(data);
-	if (data->fractal == 4)
 		draw_nova(data);
+	if (data->fractal == 4)
+		draw_multibrot(data);
 }
 
 void	change_detail(t_data *data, int direction)
 {
-	if (direction == 1 && data->canvas.max_iter < 5000)
-		data->canvas.max_iter *= 1.2;
+	if (direction == 1 && data->canvas.max_iter < 2500)
+		data->canvas.max_iter *= 1.25;
 	else if (direction == -1 && data->canvas.max_iter > 5)
-		data->canvas.max_iter *= 1 / 1.2;
+		data->canvas.max_iter *= 1 / 1.25;
 	printf("Maxiter: %d\n", data->canvas.max_iter);
 	draw_fractal(data);
 }
 
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+uint32_t	ft_pixel(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	calc_color(t_data *data)
+void	calc_color(t_data *data, long double velocity)
 {
 	t_color		*c;
-	uint32_t	iter;
+	uint32_t	i;
+	long double	value;
 
-	iter = data->canvas.iter;
 	c = &data->color;
-	if (iter == data->canvas.max_iter)
+	if (data->canvas.iter == data->canvas.max_iter)
 	{
-		c->r = 0x0;
-		c->g = 0x0;
-		c->b = 0x0;
-		c->opac = 0xFF;
+		c->color = ft_pixel(0, 0, 0, 255);
+		return ;
 	}
-	else
+	if (data->fractal == 3)
 	{
-		c->r = (255 * iter / 3) % 255;
-		c->g = (255 * iter / 4) % 255;
-		c->b = (255 * iter / 5) % 255;
-		c->opac = 255;
+		i = (data->canvas.iter + (uint32_t)velocity) % 255;
+		c->color = c->spectrum[i];
+		return ;
 	}
-	c->color = ft_pixel(c->r, c->g, c->b, c->opac);
+	if (velocity > 1000)
+		velocity = 1000;
+	value = (uint32_t)(velocity) / 100;
+	i = (data->canvas.iter + (uint32_t)value) % 255;
+	c->color = c->spectrum[i];
 }

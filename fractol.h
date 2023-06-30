@@ -6,7 +6,7 @@
 /*   By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:25 by vvan-der          #+#    #+#             */
-/*   Updated: 2023/06/11 17:31:12 by vvan-der         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:03:38 by vvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <math.h>
 # include <limits.h>
 # include <stdbool.h>
+# define PI 3.14159265
 
 # ifndef S_COMPLEX
-# define S_COMPLEX
+#  define S_COMPLEX
 
 typedef struct s_complex
 {
@@ -30,27 +31,31 @@ typedef struct s_complex
 	long double	i;
 }	t_complex;
 
-#endif
+# endif
 
 # ifndef S_COLOR
-# define S_COLOR
+#  define S_COLOR
 
 typedef struct s_color
 {
-	uint32_t	r;
-	uint32_t	g;
-	uint32_t	b;
-	uint32_t	opac;
+	uint8_t		r[16];
+	uint8_t		g[16];
+	uint8_t		b[16];
+	uint8_t		x;
+	uint8_t		y;
+	uint8_t		z;
+	uint8_t		opac;
 	uint32_t	color;
-	t_complex	r1;
-	t_complex	r2;
-	t_complex	r3;
+	uint32_t	spectrum[256];
+	uint32_t	sr[256];
+	uint32_t	sg[256];
+	uint32_t	sb[256];
 }	t_color;
 
-#endif
+# endif
 
 # ifndef S_CANVAS
-# define S_CANVAS
+#  define S_CANVAS
 
 typedef struct s_canvas
 {
@@ -66,10 +71,10 @@ typedef struct s_canvas
 	uint32_t	max_iter;
 }	t_canvas;
 
-#endif
+# endif
 
 # ifndef S_WINDOW
-# define S_WINDOW
+#  define S_WINDOW
 
 typedef struct s_window
 {
@@ -80,14 +85,15 @@ typedef struct s_window
 	int32_t		y;
 }	t_window;
 
-#endif
+# endif
 
-# ifndef S_data
-# define S_data
+# ifndef S_DATA
+#  define S_DATA
 
 typedef struct s_data
 {
 	uint8_t		fractal;
+	uint8_t		power;
 	t_color		color;
 	t_canvas	canvas;
 	t_window	window;
@@ -95,7 +101,7 @@ typedef struct s_data
 	mlx_t		*mlx;
 }	t_data;
 
-#endif
+# endif
 
 /* Complex math functions */
 
@@ -107,7 +113,7 @@ t_complex	c_sub(t_complex a, t_complex b);
 
 /* Executional functions */
 
-void		calc_color(t_data *data);
+void		calc_color(t_data *data, long double velocity);
 void		change_detail(t_data *data, int direction);
 void		draw_fractal(t_data *data);
 void		ft_exit(void);
@@ -124,22 +130,23 @@ void		calc_mandelbrot(t_data *data);
 void		ft_mandelbrot(int size);
 void		draw_mandel(void *param);
 
+/* Multibrot */
+
+void		calc_multibrot(t_data *data, uint8_t pow);
+void		draw_multibrot(void *param);
+void		ft_multibrot(int size, uint32_t power);
+
 /* Nova */
 
 void		ft_nova(int size);
 void		draw_nova(void *param);
-
-/* Squid */
-
-void		ft_squid(int size);
-void		draw_squid(void *param);
 
 /* Hooks */
 
 void		ft_keyhook(void *param);
 void		ft_scrollhook(double dx, double dy, void *param);
 void		ft_mousehook(void *param);
-void		ft_mousehook2(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
+void		ft_mh2(mouse_key_t btn, action_t act, modifier_key_t m, void *p);
 
 /* Initialise all the structs */
 
@@ -147,15 +154,15 @@ void		ft_openwindow(t_data *d, int fractal);
 void		init_mandel(t_data *data, int32_t size);
 void		init_julia(t_data *data, int32_t size);
 void		init_canvas(t_data *data);
+void		init_color(t_data *data);
 
 /* Edit them structs */
 
 void		move_canvas(t_data *data, long double x, long double y);
 void		zoom_canvas(t_data *data, long double zoom);
-void		calc_color(t_data *data);
 
 /* Utilities */
 
-int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+uint32_t	ft_pixel(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
 #endif
