@@ -6,7 +6,7 @@
 #    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:30:08 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/30 12:23:06 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/30 12:43:56 by vvan-der         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,9 @@ RM		= rm -rf
 CFLAGS	= -Wextra -Wall -Werror -Ofast #-g3 -fsanitize=address
 LIBFT	= libft
 LIBMLX	= ./MLX42
+MLXOUT	= $(LIBMLX)/build/libmlx42.a
 HEADERS	= -I $(LIBMLX)/include/MLX42
-LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw3 -pthread -lm -framework OpenGL -framework Cocoa -framework IOKit
+LIBS	= $(MLXOUT) -ldl -lglfw3 -pthread -lm -framework OpenGL -framework Cocoa -framework IOKit
 OBJDIR	= Fractobjs
 
 SRCS	= complex_math.c fractol.c hooks.c init_canvas.c init_color.c init_window.c \
@@ -27,10 +28,9 @@ SRCS	= complex_math.c fractol.c hooks.c init_canvas.c init_color.c init_window.c
 
 OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
 
+all: $(MLXOUT) $(NAME)
 
-all: $(LIBMLX) $(NAME)
-
-$(LIBMLX):
+$(MLXOUT):
 	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 $(LIBFT)/$(LIBFT).a:
