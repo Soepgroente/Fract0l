@@ -6,7 +6,7 @@
 #    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:30:08 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/30 11:11:23 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/30 11:37:49 by vvan-der         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,10 @@ SRCS	= complex_math.c fractol.c hooks.c init_canvas.c init_color.c init_window.c
 OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
 
 
-all: $(NAME) #libmlx 
+all: libmlx $(NAME)
 
-#libmlx:
-#	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+libmlx:
+	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 $(LIBFT)/$(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
