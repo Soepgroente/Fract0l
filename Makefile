@@ -6,7 +6,7 @@
 #    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:30:08 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/30 13:39:38 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/30 14:03:25 by vvan-der         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,12 @@ $(LIBFT)/$(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
 
 $(OBJDIR)/%.o : %.c
-	mkdir -p $(OBJDIR)
 	$(CC) -c $(CFLAGS) -o $@ $^
 
-$(NAME): $(OBJS) $(LIBFT)/$(LIBFT).a
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(NAME): $(OBJDIR) $(OBJS) $(LIBFT)/$(LIBFT).a 
 	$(CC) $(OBJS) $(LIBFT)/$(LIBFT).a $(LIBS) -o $(NAME)
 
 clean:

@@ -6,7 +6,7 @@
 #    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 18:04:48 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/30 11:10:49 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/30 14:04:04 by vvan-der         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,13 @@ OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
 
 all:	$(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJDIR) $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-$(OBJDIR)/%.o : %.c
+$(OBJDIR):
 	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o : %.c
 	$(CC) -c $(CFLAGS) -o $@ $^
 
 clean:
