@@ -6,7 +6,7 @@
 #    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:30:08 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/30 11:37:49 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/30 12:23:06 by vvan-der         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@
 NAME	= Fractol
 CC		= gcc
 RM		= rm -rf
-CFLAGS	= -Wextra -Wall -Werror #-g3 -fsanitize=address
+CFLAGS	= -Wextra -Wall -Werror -Ofast #-g3 -fsanitize=address
 LIBFT	= libft
 LIBMLX	= ./MLX42
 HEADERS	= -I $(LIBMLX)/include/MLX42
-LIBS	= $(LIBMLX)/build/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit # -pthread -Ofast -ldl
+LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw3 -pthread -lm -framework OpenGL -framework Cocoa -framework IOKit
 OBJDIR	= Fractobjs
 
 SRCS	= complex_math.c fractol.c hooks.c init_canvas.c init_color.c init_window.c \
@@ -28,9 +28,9 @@ SRCS	= complex_math.c fractol.c hooks.c init_canvas.c init_color.c init_window.c
 OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
 
 
-all: libmlx $(NAME)
+all: $(LIBMLX) $(NAME)
 
-libmlx:
+$(LIBMLX):
 	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 $(LIBFT)/$(LIBFT).a:
