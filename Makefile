@@ -6,7 +6,7 @@
 #    By: vvan-der <vvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:30:08 by vvan-der          #+#    #+#              #
-#    Updated: 2023/06/30 14:03:25 by vvan-der         ###   ########.fr        #
+#    Updated: 2023/06/30 15:43:28 by vvan-der         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) $(LIBFT)/$(LIBFT).a
+	$(RM) $(LIBMLX)/build
 
 re: fclean all
 
